@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameOfEconomy.MainLogic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GameOfEconomy
 {
@@ -20,9 +10,30 @@ namespace GameOfEconomy
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int currentStep;
+
+        private DataGridWrapper gridWrapper;
+        private Game game;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Initialize();
         }
+
+        private void Initialize()
+        {
+            gridWrapper = new DataGridWrapper(MainTable);
+            game = new Game(gridWrapper);
+        }
+
+
+        private void NextYear_Click(object sender, RoutedEventArgs e)
+        {
+            game.SimulateNextStep();
+        }
+       
+
     }
 }

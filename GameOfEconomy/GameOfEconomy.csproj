@@ -63,6 +63,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataGridRow.cs" />
+    <Compile Include="DataGridWrapper.cs" />
+    <Compile Include="MainLogic\Game.cs" />
+    <Compile Include="MainLogic\VariableTypes.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

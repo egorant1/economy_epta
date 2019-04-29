@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+
+        <Button x:Name="NextYear" Content="Next" HorizontalAlignment="Left" Margin="638,368,0,0" VerticalAlignment="Top" Width="146" Height="42" Click="NextYear_Click"/>
+
+        <DataGrid x:Name="MainTable" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="353" Margin="10,10,0,0" VerticalAlignment="Top" Width="774"  >
+            <!-- Colums header -->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Long name" Binding="{Binding LongName}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

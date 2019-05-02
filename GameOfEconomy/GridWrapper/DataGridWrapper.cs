@@ -5,27 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Xml.Serialization;
 
 namespace GameOfEconomy
 {
-    class DataGridWrapper
+    public class DataGridWrapper
     {
         public DataGrid dataGrid;
-
-        private List<DataGridRow> rows;
+        
+        public List<DataGridRow> rows;
 
         public DataGridWrapper(DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;
-            this.rows = new List<DataGridRow>();
+            rows = new List<DataGridRow>();
         }
 
         public void AddColum(int year)
         {
-            DataGridTextColumn column = new DataGridTextColumn();
-            column.Header = $"Year {year}";
-            column.Binding = new Binding($"Year{year}");
+            DataGridTextColumn column = new DataGridTextColumn
+            {
+                Header = $"Year {year}",
+                Binding = new Binding($"Year{year}")
+            };
             dataGrid.Columns.Add(column);
+        }
+
+        public void PopColum()
+        {
+            dataGrid.Columns.RemoveAt(dataGrid.Columns.Count - 1);
         }
         
         public void AddRow(DataGridRow dataGridRow)

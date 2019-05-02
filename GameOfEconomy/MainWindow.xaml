@@ -7,10 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Save" Click="MenuItem_Click" ></MenuItem>
+                <MenuItem Header="Load" Click="MenuItem_Click_1" ></MenuItem>
+            </MenuItem>
+        </Menu>
 
-        <Button x:Name="NextYear" Content="Next" HorizontalAlignment="Left" Margin="638,368,0,0" VerticalAlignment="Top" Width="146" Height="42" Click="NextYear_Click"/>
 
-        <DataGrid x:Name="MainTable" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="353" Margin="10,10,0,0" VerticalAlignment="Top" Width="774"  >
+        <Button x:Name="NextYear" Content="Next" Margin="0,0,9.6,10" Click="NextYear_Click" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="146"/>
+
+        <DataGrid x:Name="MainTable" ItemsSource="{Binding}" Margin="10,30,9.6,57" BeginningEdit="MainTable_BeginningEdit">
             <!-- Colums header -->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Long name" Binding="{Binding LongName}"/>

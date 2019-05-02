@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace GameOfEconomy.MainLogic
 {
-    class Game
+    public class Game
     {
         private int CurrentStep;
 
         private DataGridWrapper gridWrapper;
 
         private List<EEndVar> endVars;
-        private List<EInstrVar> instrVars;
+        public  List<EInstrVar> instrVars;
         private List<EInterVar> interVars;
         private List<EConstVar> constVars;
 
@@ -32,25 +32,33 @@ namespace GameOfEconomy.MainLogic
 
         private void InitializeVariables()
         {
-            endVars = new List<EEndVar>();
-            endVars.Add(new EEndVar { Name = "End.Var1", LongName = "Какая то хуйня" });
-            endVars.Add(new EEndVar { Name = "End.Var2", LongName = "Какая то хуйня" });
-            endVars.Add(new EEndVar { Name = "End.Var3", LongName = "Какая то хуйня" });
+            endVars = new List<EEndVar>
+            {
+                new EEndVar { Name = "End.Var1", LongName = "Какая то хуйня" },
+                new EEndVar { Name = "End.Var2", LongName = "Какая то хуйня" },
+                new EEndVar { Name = "End.Var3", LongName = "Какая то хуйня" }
+            };
 
-            instrVars = new List<EInstrVar>();
-            instrVars.Add(new EInstrVar { Name = "Instr.Var1", LongName = "Какая то хуйня" });
-            instrVars.Add(new EInstrVar { Name = "Instr.Var2", LongName = "Какая то хуйня" });
-            instrVars.Add(new EInstrVar { Name = "Instr.Var3", LongName = "Какая то хуйня" });
+            instrVars = new List<EInstrVar>
+            {
+                new EInstrVar { Name = "Instr.Var1", LongName = "Какая то хуйня" },
+                new EInstrVar { Name = "Instr.Var2", LongName = "Какая то хуйня" },
+                new EInstrVar { Name = "Instr.Var3", LongName = "Какая то хуйня" }
+            };
 
-            interVars = new List<EInterVar>();
-            interVars.Add(new EInterVar { Name = "Inter.Var1", LongName = "Какая то хуйня" });
-            interVars.Add(new EInterVar { Name = "Inter.Var2", LongName = "Какая то хуйня" });
-            interVars.Add(new EInterVar { Name = "Inter.Var3", LongName = "Какая то хуйня" });
+            interVars = new List<EInterVar>
+            {
+                new EInterVar { Name = "Inter.Var1", LongName = "Какая то хуйня" },
+                new EInterVar { Name = "Inter.Var2", LongName = "Какая то хуйня" },
+                new EInterVar { Name = "Inter.Var3", LongName = "Какая то хуйня" }
+            };
 
-            constVars = new List<EConstVar>();
-            constVars.Add(new EConstVar { Name = "Const.Var1", LongName = "Какая то хуйня" });
-            constVars.Add(new EConstVar { Name = "Const.Var2", LongName = "Какая то хуйня" });
-            constVars.Add(new EConstVar { Name = "Const.Var3", LongName = "Какая то хуйня" });
+            constVars = new List<EConstVar>
+            {
+                new EConstVar { Name = "Const.Var1", LongName = "Какая то хуйня" },
+                new EConstVar { Name = "Const.Var2", LongName = "Какая то хуйня" },
+                new EConstVar { Name = "Const.Var3", LongName = "Какая то хуйня" }
+            };
         }
 
         private void PassVariablesToGrid()
@@ -128,6 +136,16 @@ namespace GameOfEconomy.MainLogic
             gridWrapper.AddColum(0);
         }
 
+        public void SetZeroYearInstrVariables(List<float> variables)
+        {
+            for (int i = endVars.Count, j = 0; i < endVars.Count + instrVars.Count; i++, j++)
+            {
+                gridWrapper[i][0] = variables[j].ToString();
+            }
+
+            gridWrapper.Apply();
+        }
+
         private enum Step
         {
             Current,
@@ -169,6 +187,15 @@ namespace GameOfEconomy.MainLogic
             CurrentStep++;
         }
 
+        public bool IsVariableInstr(string name)
+        {
+            int id = variableIds[name];
+            if (id >= endVars.Count && id < endVars.Count + instrVars.Count)
+                return true;
+
+            return false;
+        }
+
         private float GetVar(string name, Step step)
         {
             if (step == Step.Current)
@@ -180,6 +207,31 @@ namespace GameOfEconomy.MainLogic
         private void SetVar(string name, float value)
         {
             gridWrapper[variableIds[name]][CurrentStep] = value.ToString();
+        }
+
+        public void MoveCarriageTo(int to)
+        {
+            if (CurrentStep == to)
+                return;
+
+            else if (CurrentStep < to)
+            {
+                while (CurrentStep != to)
+                {
+                    gridWrapper.AddColum(CurrentStep++);
+                }
+                return;
+            }
+            
+            else
+            {
+                while (CurrentStep != to)
+                {
+                    gridWrapper.PopColum();
+                    CurrentStep--;
+                }
+                return;
+            }
         }
 
     }

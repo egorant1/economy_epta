@@ -2,13 +2,13 @@
 {
     public class EVariable
     {
-        public string Name;
-        public string LongName;
+        public string Name { get; set; }
+        public string LongName { get; set; }
     }
 
     public class EInstrVar : EVariable
     {
-
+        public string Value { get; set; }
     }
 
     public class EInterVar : EVariable

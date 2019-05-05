@@ -36,7 +36,8 @@ namespace GameOfEconomy.MainLogic
             {
                 new EEndVar { Name = "End.Var1", LongName = "Какая то хуйня" },
                 new EEndVar { Name = "End.Var2", LongName = "Какая то хуйня" },
-                new EEndVar { Name = "End.Var3", LongName = "Какая то хуйня" }
+                new EEndVar { Name = "End.Var3", LongName = "Какая то хуйня" },
+                new EEndVar { Name = "End.Var4", LongName = "Какая то хуйня2" },
             };
 
             instrVars = new List<EInstrVar>

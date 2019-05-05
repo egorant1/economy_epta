@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +37,7 @@ namespace GameOfEconomy.MainLogic
                 new EEndVar { Name = "End.Var1", LongName = "Какая то хуйня" },
                 new EEndVar { Name = "End.Var2", LongName = "Какая то хуйня" },
                 new EEndVar { Name = "End.Var3", LongName = "Какая то хуйня" },
-                new EEndVar { Name = "End.Var4", LongName = "Какая то хуйня2" },
+                new EEndVar { Name = "End.Var4", LongName = "Какая то хуйня3" },
             };
 
             instrVars = new List<EInstrVar>

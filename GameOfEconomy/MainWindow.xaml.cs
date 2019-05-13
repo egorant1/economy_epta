@@ -63,13 +63,18 @@ namespace GameOfEconomy
 
         private void ShowEditDialog(DataGridRow row, int yearIndex)
         {
-            EditDialog dialog = new EditDialog(row.Name, float.Parse(row[yearIndex]));
+
+            EditDialog dialog = new EditDialog(row.Name, row[yearIndex] == null ? 0 : float.Parse(row[yearIndex]));
             dialog.Show();
 
             dialog.Closed += (object s, System.EventArgs closedEvent) =>
             {
                 row[yearIndex] = dialog.Value.ToString();
                 gridWrapper.Apply();
+                game.CurrentStep--;
+                game.SimulateStep();
+                game.CurrentStep++;
+
             };
         }
 

@@ -14,7 +14,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Name}" Width="100"/>
+                        <TextBlock Text="{Binding Path=Name}" Width="200"/>
                         <TextBox Text="{Binding Path=Value}" Width="100"/>
                     </StackPanel>
                 </DataTemplate>
